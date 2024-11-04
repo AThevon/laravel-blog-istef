@@ -59,7 +59,6 @@
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-
                                 <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
@@ -85,7 +84,7 @@
                     </button>
                 </div>
             @else
-                <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <div class="hidden gap-1 sm:flex sm:items-center sm:ms-6">
                     <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
                         {{ __('Log in') }}
                     </x-nav-link>
