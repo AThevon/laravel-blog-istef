@@ -3,6 +3,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StatisticsController;
 
 Route::get('/', function () {
     return view('home');
@@ -38,6 +39,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
     Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
     Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+
+    Route::post('/send-stats', [StatisticsController::class, 'sendUserStats'])->name('send.user.stats');
 });
 
 require __DIR__ . '/auth.php';

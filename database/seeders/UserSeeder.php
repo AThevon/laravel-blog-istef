@@ -40,8 +40,5 @@ class UserSeeder extends Seeder
             'password' => Hash::make('author123'),
             'role_id' => $author->id,
         ]);
-
-        User::factory(10)->create(['role_id' => $author->id]);
-        User::factory(10)->create(['role_id' => $reader->id]);
     }
 }

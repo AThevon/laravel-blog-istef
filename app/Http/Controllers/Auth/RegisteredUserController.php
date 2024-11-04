@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\UserNotification;
+use App\Enums\NotificationType;
 
 class RegisteredUserController extends Controller
 {
@@ -22,7 +24,7 @@ class RegisteredUserController extends Controller
     public function create(): View
     {
         $roles = Role::whereIn('name', ['author', 'reader'])->pluck('name', 'id');
-        return view('auth.register', compact('roles'));
+        return view('auth.register', ['roles' => $roles]);
     }
 
     /**
@@ -47,6 +49,7 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+        $user->notify(new UserNotification(NotificationType::REGISTRATION));
         Auth::login($user);
 
         return redirect(route('home'));

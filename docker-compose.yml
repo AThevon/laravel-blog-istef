@@ -62,8 +62,8 @@ services:
   mailpit:
     image: axllent/mailpit:latest
     ports:
-      - "8025:8025" # Interface web Mailpit
-      - "1025:1025" # Port SMTP pour Laravel
+      - "8025:8025" # UI
+      - "1025:1025" # SMTP
     networks:
       - sail
 networks:

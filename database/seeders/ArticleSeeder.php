@@ -16,19 +16,19 @@ class ArticleSeeder extends Seeder
     {
         $articles = [
             [
-                'title' => 'Mon premier article',
+                'title' => 'Mon premier',
                 'content' => 'Contenu de mon premier article',
                 'user_id' => 3,
             ],
             [
-                'title' => 'Mon deuxième article',
+                'title' => 'Mon deuxième',
                 'content' => 'Contenu de mon deuxième article',
                 'user_id' => 3,
             ],
             [
                 'title' => 'Mon troisième article',
                 'content' => 'Contenu de mon troisième article',
-                'user_id' => 4,
+                'user_id' => 3,
             ],
         ];
 

@@ -6,6 +6,8 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
+use App\Notifications\UserNotification;
+use App\Enums\NotificationType;
 
 class CommentController extends Controller
 {
@@ -38,6 +40,9 @@ class CommentController extends Controller
             'content' => $validatedData['content'],
             'user_id' => Auth::id(),
         ]);
+
+        $user = $article->user;
+        $user->notify(new UserNotification(NotificationType::NEW_COMMENT));
 
         return redirect()->route('articles.show', $article->id)
             ->with('success', 'Commentaire ajouté avec succès.');

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\UserNotification;
+use App\Enums\NotificationType;
 
 class ArticleController extends Controller
 {
@@ -41,6 +43,9 @@ class ArticleController extends Controller
             'user_id' => Auth::id(),
         ]);
 
+        $user = Auth::user();
+        $user->notify(new UserNotification(NotificationType::NEW_ARTICLE));
+        
         return redirect()->route('articles.index')->with('success', 'Article créé avec succès.');
     }
 
